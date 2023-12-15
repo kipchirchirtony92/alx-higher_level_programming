@@ -16,6 +16,7 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
+        """a setter method to the size attribute"""
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
         elif value < 0:
@@ -24,6 +25,7 @@ class Square(Rectangle):
         self.height = value
 
     def update(self, *args, **kwargs):
+        """update the attributes of the class with dictionary arguments or a kinda of list argument"""
         new_list = ['id', 'size', 'x', 'y']
         if args:
             for i in range(len(args)):
@@ -33,6 +35,7 @@ class Square(Rectangle):
                 if key in new_list:
                     setattr(self , key, value)
     def to_dictionary(self):
+        """return a dictionary representation of the class"""
         return {
             "id": self.id,
             "size": self.size,

@@ -3,7 +3,6 @@
 """ Defines a rectagle subclass """
 from models.base import Base
 
-
 class Rectangle(Base):
     """ Represents a rectangle"""
 
@@ -72,7 +71,7 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("y must be an integer")
         elif value < 0:
             raise ValueError("y must be >= 0")
@@ -138,3 +137,12 @@ class Rectangle(Base):
                     self.x = v
                 elif k == "y":
                     self.y = v
+    def to_dictionary(self):
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y            
+        }
+

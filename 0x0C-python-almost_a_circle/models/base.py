@@ -40,3 +40,13 @@ class Base:
                 json_list.append(obj.to_dictionary())
         with open(filename, 'w') as file:
             file.write(cls.to_json_string(json_list))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """
+           static method to return list of the JSON string representation
+        """
+        if json_string is  None or json_string == "":
+            return []
+        return json.loads(json_string)
+

@@ -29,7 +29,7 @@ class Base:
         else:
             return "[]"
 
-
+    @classmethod
     def save_to_file(cls, list_objs):
         """save all the instances that inherit from the Base class  to a file in JSON format """
         filename =  cls.__name__+".json"
@@ -60,4 +60,18 @@ class Base:
             dummy_instance = cls()
         dummy_instance.update(**dictionary)
         return dummy_instance
-    
+
+
+    @classmethod
+    def load_from_file(cls):
+        
+        filename = cls.__name__ + ".json"
+        try:
+            with open(filename, 'r') as file:
+                content = file.read()
+                dict_list = cls.from_json_string(content)
+                for d in dict_list:
+                    instance_list = [cls.create(**d)]
+                    return instance_list
+        except FileNotFoundError:
+            return []
